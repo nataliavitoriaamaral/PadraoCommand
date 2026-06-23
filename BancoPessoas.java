@@ -25,7 +25,7 @@ public class BancoPessoas {
             banco.put(id, new Pessoa(id, nome));
             System.out.println("Pessoa adicionada");
         });
-        
+
         comandos.put("get", args -> {
             if (args.length < 2) {
                 System.out.println("Faltou o ID. Tente: get <id>");
@@ -38,6 +38,21 @@ public class BancoPessoas {
                 System.out.println(p.getNome());
             } else {
                 System.out.println("Ninguem com esse ID no banco.");
+            }
+        });
+
+        comandos.put("delete", args -> {
+            if (args.length < 2) {
+                System.out.println("Faltou o ID. Tente: delete <id>");
+                return;
+            }
+            int id = Integer.parseInt(args[1]);
+            
+            // o remove retorna o objeto se achar, ou null se nao existir
+            if (banco.remove(id) != null) {
+                System.out.println("Pessoa deletada.");
+            } else {
+                System.out.println("ID nao existe.");
             }
         });
     }
