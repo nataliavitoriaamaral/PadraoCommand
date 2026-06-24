@@ -68,6 +68,23 @@ public class BancoPessoas {
         });
     }
     public static void main(String[] args) {
-    
+        if (args.length == 0) {
+            System.out.println("Uso correto: java BancoPessoas <comando> [<args>]");
+            return;
+        }
+
+        String nomeComando = args[0];
+        Comando cmd = comandos.get(nomeComando);
+
+        if (cmd != null) {
+            try {
+                cmd.executar(args);
+            } catch (NumberFormatException e) {
+                // previne crash se tentarem passar texto no lugar de numero
+                System.out.println("Erro: O ID precisa ser um numero inteiro.");
+            }
+        } else {
+            System.out.println("Comando nao reconhecido: " + nomeComando);
+        }
     }
 }
