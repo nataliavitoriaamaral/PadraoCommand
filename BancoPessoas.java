@@ -55,6 +55,17 @@ public class BancoPessoas {
                 System.out.println("ID nao existe.");
             }
         });
+
+        comandos.put("all", args -> {
+            if (banco.isEmpty()) {
+                System.out.println("O banco esta vazio.");
+                return;
+            }
+            // lista todo mundo
+            for (Pessoa p : banco.values()) {
+                System.out.println(p);
+            }
+        });
     }
     public static void main(String[] args) {
     
